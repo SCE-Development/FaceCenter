@@ -35,9 +35,9 @@ scrape_configs:
         labels:
           device: "kria"
 
-  - job_name: "cAdvisor"
+  - job_name: "cadvisor"
     static_configs:
-      - targets: ["localhost:8000"]
+      - targets: ["cadvisor:8000"]
         labels:
           device: "laptop"
       - targets: ["${KRIA_IP}:8000"]

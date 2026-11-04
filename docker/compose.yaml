@@ -8,6 +8,8 @@ services:
     volumes:
       - prom-data:/var/lib/prometheus
       - ../prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    depends_on:
+      - cadvisor
     networks:
       - monitoring
 
