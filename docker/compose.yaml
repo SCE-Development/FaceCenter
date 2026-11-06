@@ -7,7 +7,9 @@ services:
       - "${SERVER_IP}:9090:9090"
     volumes:
       - prom-data:/var/lib/prometheus
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ../prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    depends_on:
+      - cadvisor
     networks:
       - monitoring
 
