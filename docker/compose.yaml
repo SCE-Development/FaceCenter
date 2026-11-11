@@ -6,7 +6,7 @@ services:
     ports:
       - "192.168.69.186:9090:9090"
     volumes:
-      - /var/lib/prometheus:/prometheus
+      - prom-data:/var/lib/prometheus
       - ../prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     depends_on:
       - cadvisor
@@ -55,6 +55,9 @@ services:
       - --enable_metrics=disk,network,tcp,udp,percpu,sched,process
     networks:
       - monitoring
+
+volumes:
+  prom-data:
 
 networks:
   monitoring:
