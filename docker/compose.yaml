@@ -50,7 +50,7 @@ services:
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
     command:
-      - --housekeeping_interval=15s
+      - --housekeeping_interval=5s
       - --docker_only=true
       - --enable_metrics=disk,network,tcp,udp,percpu,sched,process
     networks:
