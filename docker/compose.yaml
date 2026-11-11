@@ -4,12 +4,10 @@ services:
     container_name: prometheus
     restart: unless-stopped
     ports:
-      - "${SERVER_IP}:9090:9090"
+      - "192.168.69.186:9090:9090"
     volumes:
       - prom-data:/var/lib/prometheus
-    configs:
-      - source: prom_config
-        target: /etc/prometheus/prometheus.yml
+      - ../prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     depends_on:
       - cadvisor
     networks:
@@ -20,7 +18,7 @@ services:
     container_name: grafana
     restart: unless-stopped
     ports:
-      - "${SERVER_IP}:3000:3000"
+      - "192.168.69.186:3000:3000"
     volumes:
       - /var/lib/grafana:/var/lib/grafana
     networks:
@@ -42,7 +40,7 @@ services:
     container_name: cadvisor
     restart: unless-stopped
     ports:
-      - "${SERVER_IP}:8080:8080"
+      - "192.168.69.186:8080:8080"
     privileged: true
     devices:
       - /dev/kmsg
@@ -60,11 +58,6 @@ services:
 
 volumes:
   prom-data:
-
-configs:
-  prom_config:
-    file: ../prometheus/prometheus.yml
-    environment: true
 
 networks:
   monitoring:
