@@ -1,13 +1,14 @@
 services:
   prometheus:
     image: prom/prometheus
+    user: root
     container_name: prometheus
     restart: unless-stopped
     ports:
       - "192.168.69.186:9090:9090"
     volumes:
       - prom-data:/var/lib/prometheus
-      - ../prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ../prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
     command:
       - --config.file=/etc/prometheus/prometheus.yml
       - --storage.tsdb.path=/var/lib/prometheus
